@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 const rootRouter = require('./routes/rootRouter');
-
+const membersRouter = require('./routes/membersRouter');
 app.set('view engine', 'ejs');
 
 
@@ -13,7 +13,7 @@ app.use([
 ])
 
 app.use('/', rootRouter);
-
+app.use('/members', membersRouter)
 
 
 app.use((req, res) => {

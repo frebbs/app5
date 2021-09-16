@@ -9,7 +9,10 @@
 </head>
 <body>
     <%- include('./partials/_rootMenu')%>
+    <%if (locals.message)  {%>
+    <h1> <%- locals.message%></h1>
 
+    <%}%>
     <form action="/login" method="post">
         <label for="username">Username:
             <input type="text" name="username">
