@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 router.get('/', rootController.getIndexPage);
 router.get('/login', rootController.getLoginPage);
 router.get('/createUser', rootController.getCreateUserPage)
+router.get('/logout', userController.postLogUserOut);
 
 router.post('/createUser', userController.postCreateNewUser)
 router.post('/login', userController.postAuthenticateUser);

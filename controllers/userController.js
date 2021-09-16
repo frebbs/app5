@@ -46,6 +46,7 @@ exports.postAuthenticateUser = async (req, res, next) => {
                     message: "Incorrect username or password"
                 })
             }
+
             bcrypt.compare(password, user.password, (err, result) => {
                 if(err) {
                     res.json({
@@ -54,6 +55,11 @@ exports.postAuthenticateUser = async (req, res, next) => {
                     })
                 }
                 if(result) {
+                    req.session.profile = {
+                        id: user._id,
+                        username: user.username,
+                        authenticated: true
+                    }
                     return res.redirect('/members')
                 } else {
                     return res.render('login', {
@@ -67,4 +73,9 @@ exports.postAuthenticateUser = async (req, res, next) => {
         .catch((err) => {
             console.log(err)
         })
+}
+
+exports.postLogUserOut = (req, res, next) => {
+    req.session.destroy()
+    res.redirect('/')
 }
