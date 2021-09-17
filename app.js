@@ -5,7 +5,7 @@ const session = require('express-session');
 
 const rootRouter = require('./routes/rootRouter');
 const membersRouter = require('./routes/membersRouter');
-
+const pingController = require('./routes/pingRouter');
 
 app.set('view engine', 'ejs');
 
@@ -22,6 +22,7 @@ app.use([
 
 app.use('/', rootRouter);
 app.use('/members', membersRouter);
+app.use('/ping', pingController);
 
 app.use((req, res) => {
     res.json({
